@@ -18,7 +18,7 @@ setup(
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Topic :: Automation",
-        "License :: OSI Approved :: BSD License",
+        "License :: GNU GENERAL PUBLIC LICENSE",
     ],
     install_requires=[
           'pillow',

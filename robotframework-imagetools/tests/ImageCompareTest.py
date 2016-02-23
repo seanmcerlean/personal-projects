@@ -13,7 +13,7 @@ class ImageCompareTest(unittest.TestCase):
     imfile1 = '/tmp/first.jpg'
     imfile2 = '/tmp/second.jpg'
 
-    def setup(self):
+    def setUp(self):
         for file in [self.imfile1, self.imfile2]:
             if os.path.isfile(file):
                 os.remove(file)

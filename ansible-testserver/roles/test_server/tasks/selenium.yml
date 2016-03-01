@@ -1,0 +1,65 @@
+- name: Install firefox
+  yum:
+     name=firefox
+     state=latest
+
+- name: Install phantomjs dependencies
+  yum:
+      name=fontconfig
+      state=latest
+
+- name: Download phantomjs
+  get_url:
+      url={{ phantom_url }}
+      dest=~/phantomjs.tar.bz2
+
+- name: Unpack phantomjs
+  unarchive:
+      src=~/phantomjs.tar.bz2
+      dest=~
+      mode=0755
+      copy=no
+
+- name: Copy phantomjs to PATH
+  shell:
+      mv ~/phantomjs*/bin/phantomjs /usr/local/bin
+
+- name: Install java
+  yum:
+     name=java
+     state=latest
+
+- name: Install Xvfbd
+  yum:
+      name=xorg-x11-server-Xvfb
+
+- name: Copy xvfbd init script
+  template:
+      src=../templates/xvfbd.service.tpl
+      dest=/etc/systemd/system/xvfbd.service
+      mode=0444
+
+- name: Download selenium
+  get_url:
+      url={{ selenium_url }}
+      dest=/usr/local/lib/selenium-server.jar
+
+- name: Copy selenium init script
+  template:
+      src=../templates/selenium.service.tpl
+      dest=/etc/systemd/system/selenium.service
+      mode=0444
+
+- name: Reload / reexec systemctl - service won't start otherwise
+  shell:
+      systemctl daemon-reload; systemctl daemon-reexec
+
+- name: Start xvfbd service
+  service:
+      name=xvfbd
+      state=started
+
+- name: Start selenium service
+  service:
+      name=selenium
+      state=started

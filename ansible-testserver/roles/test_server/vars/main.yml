@@ -1,0 +1,22 @@
+selenium_url: http://goo.gl/qTy1IB
+selenium_port: 4444
+selenium_log: /var/log/selenium.log
+
+xvfb_display: :99
+xvfb_resolution: 1024x768x24
+
+phantom_url:  https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+
+python_packages:
+  - python
+  - python-devel
+  - python-gevent
+  - python-pillow
+  - libevent-devel
+  
+robot_packages:
+  - robotframework
+  - robotframework-requests
+  - robotframework-selenium2library
+  - robotframework-databaselibrary
+  - robotframework-faker

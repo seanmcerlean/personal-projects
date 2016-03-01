@@ -1,0 +1,8 @@
+- name: Install Python and libraries
+  include: python.yml
+
+- name: Install Selenium and needed items
+  include: selenium.yml
+
+- name: Install Robot Framework and libraries
+  include: test_tools.yml

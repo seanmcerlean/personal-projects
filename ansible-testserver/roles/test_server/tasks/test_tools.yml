@@ -1,0 +1,11 @@
+- name: Install robotframework and packages
+  pip:
+      name={{ item }}
+      state=latest
+  with_items: 
+      - "{{ robot_packages }}"
+
+- name: Install locust.io
+  pip:
+      name=locustio
+      state=latest

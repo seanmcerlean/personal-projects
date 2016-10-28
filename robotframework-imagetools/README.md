@@ -6,10 +6,10 @@ of a website for any changes. A threshold can then be set that is worth taking a
 
 ## Installation
 
-Clone the repository and then either improt directly using
+Clone the repository and then either import directly using
 
 Library <path_to_package>/ImageTools
 
 or it should be pip installable
 
-pip install <path_to_package>/robotfra,ework-imagetools
+pip install <path_to_package>/robotframework-imagetools

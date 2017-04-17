@@ -1,0 +1,1 @@
+# Not widley used in Python due to dynamic natur eof language and duck typing

@@ -30,7 +30,6 @@ class CSVFileReader(AbstractFileReader):
 
 
 class JSONFileReader(AbstractFileReader):
-
     def __init__(self):
         self._reader = None
 

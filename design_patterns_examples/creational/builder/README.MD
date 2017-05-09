@@ -3,7 +3,7 @@ Builds a complex object using a stepwise approach
 # Uses
 
 * Common input with many possible representations
-* Anywhere objects can't be built in a single step or the final object is mutable
+* Anywhere objects can't be built in a single step or the final object is immutable
 * Practical Examples:
   - Building an arbirary HTML or GUI forms
   - Test data - i need a user with details X, Y, Z...

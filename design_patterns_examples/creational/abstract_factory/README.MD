@@ -15,4 +15,4 @@ Provide an interface for creating families of related or dependent objects witho
 
 # Disadvantages
 
-* Extending thr abstract interface (e.g. for a new product) implies all concrete classes much change
+* Extending the abstract interface (e.g. for a new product) implies all concrete classes must change

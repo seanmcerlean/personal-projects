@@ -12,7 +12,7 @@ Homepage Title Displays Correctly
     Go To  ${HOST}
     Title Should Be  ${HOME_TITLE}
 
-Homepage Contains Expected Contact
+Homepage Contains Expected Content
     Go To  ${HOST}
     Content Table Contains Cheddar Mac
     Content Table Contains Brie

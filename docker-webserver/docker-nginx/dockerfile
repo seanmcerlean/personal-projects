@@ -1,0 +1,7 @@
+FROM nginx
+
+MAINTAINER Sean McErlean
+
+COPY nginx/html /usr/share/nginx/html
+
+EXPOSE 80 80

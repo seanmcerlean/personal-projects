@@ -1,0 +1,24 @@
+FROM openjdk:8
+
+MAINTAINER  Sean McErlean
+
+ENV JMETER_HOME /opt/jmeter
+    ENV JMETER_BIN $JMETER_HOME/bin
+
+RUN curl http://jmeter.apache.org/download_jmeter.cgi | \
+        grep -o -E "href=[\"'](.*apache-jmeter-[.0-9]+.tgz)[\"']" | \
+        sed 's/href=//g' | \
+        xargs -n 1 curl -o jmeter.tgz
+
+RUN tar xvf jmeter.tgz
+
+RUN cp -r apache-jmeter-* $JMETER_HOME
+
+ENV PATH $PATH:$JMETER_HOME
+
+WORKDIR ${JMETER_HOME}
+
+COPY test.jmx .
+
+CMD bin/jmeter -n -t test.jmx; sleep 120
+

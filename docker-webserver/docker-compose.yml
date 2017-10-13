@@ -1,0 +1,12 @@
+version: '2'
+services:
+  docker-nginx:
+    container_name: webserver
+    build: ./docker-nginx
+    ports:
+      - "80:80"
+  docker-jmeter-master:
+    container_name: docker-jmeter-master
+    build: ./docker-jmeter
+    volumes:
+      - ./logs:/var/log/jmeter

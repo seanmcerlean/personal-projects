@@ -1,0 +1,73 @@
+#! /usr/local/bin/bzt
+
+execution:
+- concurreny: ${__P(concurrency)}
+  hold-for: ${__P(hold)}
+  throughput: 1
+  ramp-up: 1s
+  scenario:
+    default-address: http://${__P(server)}
+    requests:
+      - include-scenario: homepage
+- concurrency: ${__P(concurrency)}
+  hold-for: ${__P(hold)}
+  throughput: 4
+  ramp-up: 500ms
+  scenario:
+    default-address: http://${__P(server)}
+    requests:
+      - include-scenario: failed_login
+
+scenarios:
+  variables:
+    ref: http://foo.com
+  homepage:
+    requests:
+    - url: /
+      headers:
+        ref: ${ref}
+      method: GET
+      label: GET Homepage
+      properties:
+        concurrency: 2
+  failed_login:
+    requests:
+    - url: login
+      method: GET
+      label: GET Login page (Sets CSRF)
+      extract-regexp:
+        login_page_response_code:
+          regexp: (/d{3}).*
+          default: 400
+          match-no: 1
+          template: 1
+          subject: http-code
+    - if: '"${login_page_response_code}" == "200"'
+      then:
+      - url: http://blazedemo.com/login
+        method: POST
+        label: POST Incorrect Credentials
+        follow-redirects: false
+        content-encoding: utf-8
+        body:
+          email: foo@foo.com
+          password: foo
+        assert:
+        - contains: 302
+          subject: http-code
+          regexp: false
+  properties:
+        log_level.jmeter: DEBUG
+
+reporting:
+  - final-stats
+
+modules:
+  jmeter:
+    properties:
+      server: blazedemo.com
+      concurrency: 10
+      hold: 60
+
+settings:
+  -check-updates: true
